@@ -123,7 +123,7 @@ def play(
 
         # Notify both players of the action (via .turn() methods)
         for player in players:
-            player.turn(curr_player.colour, sanitised_action)
+            player.turn(curr_player.colour, sanitised_action, game.board)
 
         # Next turn!
         turn += 1

@@ -157,3 +157,11 @@ class Board:
         """
         return [_ADD(coord, step) for step in _HEX_STEPS \
             if self.inside_bounds(_ADD(coord, step))]
+
+        # eason add 检查所有被下棋子的 location
+    def total_is_occupied(self, n):
+        for r in range(n):
+            for q in range(n):
+                if (self[(r, q)] != None):
+                    print((r, q))
+                    print(self.__getitem__((r, q)))

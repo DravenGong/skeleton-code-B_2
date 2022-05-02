@@ -8,6 +8,7 @@ import gc
 import time
 import importlib
 
+from referee.board import Board
 from referee.log import comment, print
 from referee.game import NUM_PLAYERS
 
@@ -39,6 +40,12 @@ class PlayerWrapper:
         )
         self.Player = _load_player_class(player_pkg, player_cls)
 
+
+
+
+    def set_board(self, board):
+        self.board = board
+
     def init(self, colour, n):
         self.colour = colour
         self.name += f" ({colour})"
@@ -61,11 +68,12 @@ class PlayerWrapper:
         # give back the result
         return action
 
-    def turn(self, player, action):
+    def turn(self, player, action, board):
         comment(f"updating {self.name} with actions...")
+        self.board = board
         with self.space, self.timer:
             # forward to the real player
-            self.player.turn(player, action)
+            self.player.turn(player, action, board)
         comment(self.timer.status(), depth=1)
         comment(self.space.status(), depth=1)
 

@@ -1,4 +1,5 @@
-
+from Minimax import *
+from referee.board import Board
 class Player:
     colour = ""
     n = int()
@@ -15,6 +16,7 @@ class Player:
         # put your code here
         self.colour = player
         self.n = n
+        self.board = None
         print(self.colour)
         print(self.n)
     def action(self):
@@ -23,9 +25,10 @@ class Player:
         of the game, select an action to play.
         """
         # put your code here
+
         action = ("PLACE", 1, 1)
         return action
-    def turn(self, player, action):
+    def turn(self, player, action, board):
         """
         Called at the end of each player's turn to inform this player of 
         their chosen action. Update your internal representation of the 
@@ -40,3 +43,4 @@ class Player:
         print("for red")
         print(player)
         print(action)
+        print(board.total_is_occupied(6))
