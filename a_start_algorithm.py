@@ -50,10 +50,10 @@ def a_star(board, start, goal):
                     path.update({next_node.string_location: current_node.string_location})
 
     if is_solution:
-        route = back_tracking(path, goal)
-        return route
+        route_len = len(back_tracking(path, goal))
+        return route_len
     else:
-        return "0"
+        return 0
 
 
 # Add the valid nodes into the final neighbouring node list
@@ -80,9 +80,13 @@ def is_available(neighbour, board):
     if neighbour[0] < 0 or neighbour[1] < 0:
         return False
     lst = []
-    grids = board.blocks_empty_info
+    grids = {}
+
+    for i in range(0, board.n):
+        for j in range(0, board.n):
+            grids[(i,j)] = board.__getitem__((i,j))
     for grid in grids:
-        if grids[grid] == "b":
+        if grids[grid] is not None:
             lst.append(grid)
     for grid in lst:
         if grid[0] == neighbour[0] and neighbour[1] == grid[1]:
