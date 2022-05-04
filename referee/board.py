@@ -125,6 +125,31 @@ class Board:
         """
         return self[coord] != None
 
+    #eason add1 检查所有被下棋子的 location n
+    def total_is_occupied(self,n):
+        for r in range(n):
+            for q in range(n):
+                if(self[(r,q)] != None):
+                    print((r,q))
+                    print(self.__getitem__((r, q)))
+
+
+    #eason add2 新建dic 存储当前棋盘信息
+    def store_board_as_dic(self,n):
+        board_dict = {}
+        for r in range(n):
+            for q in range(n):
+                if (self[(r, q)] != None):
+                    board_dict[(r, q)] = self.__getitem__((r, q))
+                else:
+                    board_dict[(r, q)] = "empty_cell"
+        return board_dict
+
+
+
+    def hello(self):
+        print("hello")
+
     def _apply_captures(self, coord):
         """
         Check coord for diamond captures, and apply these to the board
@@ -157,11 +182,3 @@ class Board:
         """
         return [_ADD(coord, step) for step in _HEX_STEPS \
             if self.inside_bounds(_ADD(coord, step))]
-
-        # eason add 检查所有被下棋子的 location
-    def total_is_occupied(self, n):
-        for r in range(n):
-            for q in range(n):
-                if (self[(r, q)] != None):
-                    print((r, q))
-                    print(self.__getitem__((r, q)))

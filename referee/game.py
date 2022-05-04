@@ -112,6 +112,7 @@ def play(
         comment(f"Turn {turn}", depth=-1)
         curr_player = players[(turn - 1) % 2]
 
+
         # Ask current player for their next action (calling .action() method)
         action = curr_player.action()
 
@@ -124,6 +125,8 @@ def play(
         # Notify both players of the action (via .turn() methods)
         for player in players:
             player.turn(curr_player.colour, sanitised_action, game.board)
+
+
 
         # Next turn!
         turn += 1
@@ -204,6 +207,7 @@ class Game:
         a message describing allowed actions.
         Otherwise, apply the action to the game state.
         """
+
         # Throw an error if it is not this player's turn
         # Note: this should not occur in practice since the referee handles 
         # turn taking between each player

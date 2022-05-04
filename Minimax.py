@@ -48,10 +48,10 @@ class MiniMax:
         return state.children
 
     # return true if the node has NO children (successor states)
-    def isTerminal(self, state):
-        assert state is not None
-        return len(state.children) == 0
+    def isTerminal(self, node):
+        assert node is not None
+        return len(node.children) == 0
 
-    def getUtility(self, state):
-        assert state is not None
-        return state.value
+    def getUtility(self, node):
+        assert node is not None
+        return node.value

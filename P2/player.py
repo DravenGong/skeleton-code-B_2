@@ -1,4 +1,5 @@
 from referee.board import Board
+
 class Player:
     colour = ""
     n = int()
@@ -15,8 +16,14 @@ class Player:
         self.colour = player
         self.n = n
         self.board = None
+        # eason add1
+        self.board_dic = {}
+
         print(self.colour)
         print(self.n)
+
+
+
     def action(self):
         """
         Called at the beginning of your turn. Based on the current state
@@ -29,6 +36,15 @@ class Player:
         print(r)
         return r
     
+    def print_board_dic(self):
+        print("\n")
+        print("\n")
+        for r in range(self.n):
+            for q in range(self.n):
+                # print((r,q)+':'+self.board_dic[(r,q)])
+                print("location:{} status: {}".format((r, q), self.board_dic[(r, q)]))
+
+
     def turn(self, player, action, board):
         """
         Called at the end of each player's turn to inform this player of 
@@ -41,7 +57,12 @@ class Player:
         above. However, the referee has validated it at this point.
         """
         # put your code here
+        # EASON ADD
+        self.board = board
+
         print("for blue")
         print(player)
         print(action)
-        print(board.total_is_occupied(6))
+        self.board_dic = self.board.store_board_as_dic(self.n)
+        self.print_board_dic()
+        # print(self.board.total_is_occupied(6))
